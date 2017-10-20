@@ -17,8 +17,6 @@
             "email":"Tjitse@vendic.nl"
         }
     ],
-    "require": {
-    },
     "autoload": {
         "files": [
             "registration.php"
