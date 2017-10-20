@@ -1,0 +1,24 @@
+{
+    "name": "vendic/module-zopim",
+    "description": "Add your description here",
+    "type": "magento2-module",
+    "license": [
+        "proprietary"
+    ],
+    "authors":[
+        {
+            "name":"Tjitse Efde",
+            "email":"Tjitse@vendic.nl"
+        }
+    ],
+    "require": {
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Vendic\\Zopim\\": ""
+        }
+    }
+}
