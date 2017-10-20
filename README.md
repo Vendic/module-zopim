@@ -12,6 +12,6 @@ A Magento 2 module that adds the default Zopim chatbox to the footer with Requir
 
 ## Installation
 ```
-composer require vendic/module-zopi
+composer require vendic/module-zopim
 php bin/magento setup:upgrade
 ```
