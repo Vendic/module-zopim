@@ -6,6 +6,10 @@
                 <enable>0</enable>
                 <delay>1200</delay>
             </general>
+            <cookie>
+                <enable>0</enable>
+                <name>allowedAllCookies</name>
+            </cookie>
         </vendic_zopim>
     </default>
 </config>

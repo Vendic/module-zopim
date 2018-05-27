@@ -60,6 +60,36 @@
                     <label>Zopim ID</label>
                 </field>
             </group>
+            <group id="cookie"
+                   translate="label"
+                   type="text"
+                   sortOrder="1"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>Cookies</label>
+                <field id="enable"
+                       translate="label"
+                       type="select"
+                       sortOrder="1"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable cookies</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enter delay in miliseconds. Default value 1000 (1 second)</comment>
+                </field>
+                <field id="name"
+                       translate="label"
+                       type="text"
+                       sortOrder="1"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Cookie Name</label>
+                    <comment>Enter delay in miliseconds. Default value 1000 (1 second)</comment>
+                </field>
+            </group>
         </section>
     </system>
 </config>
