@@ -3,33 +3,97 @@
  * @var $block \Vendic\Zopim\Block\View
  */
 ?>
-<?php if($block->getIsEnabled() && !empty($block->getZopimId())) : ?>
+<?php if ($block->config->getIsEnabled() && !empty($block->config->getZopimId())) : ?>
+    <?php if ($block->config->getCookiesEnabled()) : ?>
+        <script>
+            require([
+                'jquery',
+                'jquery/jquery.cookie',
+                'domReady!'
+            ], function ($) {
+                $(document).ready(function () {
 
-    <script>
-        require([
-            'jquery'
-        ], function () {
-            jQuery(document).ready(function() {
+                    var cookieName = "<?php echo $block->config->getExpectedCookieName() ?>"
+                    var cookieValue = "<?php echo $block->config->getExpectedCookieValue() ?>"
+                    
+                    console.log(cookieName);
+                    console.log(cookieValue);
+                    console.log($.cookie(cookieValue));
 
-                setTimeout(function (){
+                    if ($.cookie(cookieName) === cookieValue) {
 
-                    var isMobile = /(iphone|ipod|android|blackberry|windows ce|palm|symbian)/i.test(navigator.userAgent);
-                    var curl = window.location.href;
-                    var arr = curl.split("/");
-                    var result = arr[2];
-                    if (isMobile) {
-                    }else{
-                        window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
-                            d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-                        _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
-                            $.src="//v2.zopim.com/?<?php echo $block->getZopimId() ?>";z.t=+new Date;$.
-                                type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+                        setTimeout(function () {
+
+                            var isMobile = /(iphone|ipod|android|blackberry|windows ce|palm|symbian)/i.test(navigator.userAgent);
+                            var curl = window.location.href;
+                            var arr = curl.split("/");
+                            var result = arr[2];
+                            if (isMobile) {
+                            } else {
+                                window.$zopim || (function (d, s) {
+                                    var z = $zopim = function (c) {
+                                        z._.push(c)
+                                    }, $ = z.s =
+                                        d.createElement(s), e = d.getElementsByTagName(s)[0];
+                                    z.set = function (o) {
+                                        z.set._.push(o)
+                                    };
+                                    z._ = [];
+                                    z.set._ = [];
+                                    $.async = !0;
+                                    $.setAttribute("charset", "utf-8");
+                                    $.src = "//v2.zopim.com/?<?php echo $block->config->getZopimId() ?>";
+                                    z.t = +new Date;
+                                    $.type = "text/javascript";
+                                    e.parentNode.insertBefore($, e)
+                                })(document, "script");
+                            }
+
+                        }, <?php echo $block->config->getDelay() ?>);
+
                     }
 
-                }, <?php echo $block->getDelay() ?>);
-
+                });
             });
-        });
-    </script>
+        </script>
+    <?php else: ?>
+        <script>
+            require([
+                'jquery'
+            ], function ($) {
+                $(document).ready(function () {
 
+                    setTimeout(function () {
+
+                        var isMobile = /(iphone|ipod|android|blackberry|windows ce|palm|symbian)/i.test(navigator.userAgent);
+                        var curl = window.location.href;
+                        var arr = curl.split("/");
+                        var result = arr[2];
+                        if (isMobile) {
+                        } else {
+                            window.$zopim || (function (d, s) {
+                                var z = $zopim = function (c) {
+                                    z._.push(c)
+                                }, $ = z.s =
+                                    d.createElement(s), e = d.getElementsByTagName(s)[0];
+                                z.set = function (o) {
+                                    z.set._.push(o)
+                                };
+                                z._ = [];
+                                z.set._ = [];
+                                $.async = !0;
+                                $.setAttribute("charset", "utf-8");
+                                $.src = "//v2.zopim.com/?<?php echo $block->config->getZopimId() ?>";
+                                z.t = +new Date;
+                                $.type = "text/javascript";
+                                e.parentNode.insertBefore($, e)
+                            })(document, "script");
+                        }
+
+                    }, <?php echo $block->config->getDelay() ?>);
+
+                });
+            });
+        </script>
+    <?php endif; ?>
 <?php endif; ?>
