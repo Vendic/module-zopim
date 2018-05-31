@@ -19,18 +19,44 @@ class Config
 
     public function getCookiesEnabled()
     {
-        return boolval(
-            $this->scopeConfig->getValue(
-                'vendic_zopim/cookie/enable',
-                \Magento\Store\Model\ScopeInterface::SCOPE_STORE
-            )
-        );
+        return boolval($this->getConfig('vendic_zopim/cookie/enable'));
     }
 
-    public function getCookieName()
+    public function getExpectedCookieName()
+    {
+        return $this->getConfig('vendic_zopim/cookie/name');
+    }
+
+
+    public function getExpectedCookieValue()
+    {
+        return $this->getConfig('vendic_zopim/cookie/value');
+    }
+
+    public function getIsEnabled()
+    {
+        return boolval($this->getConfig('vendic_zopim/general/enable'));
+    }
+
+    public function getZopimId()
+    {
+        return $this->getConfig('vendic_zopim/general/zopim_id');
+    }
+
+    public function getDelay()
+    {
+        $delay = 0;
+        if (!empty($this->getConfig('vendic_zopim/general/delay'))) {
+            $delay = $this->getConfig('vendic_zopim/general/delay');
+        }
+
+        return intval($delay);
+    }
+
+    protected function getConfig($path)
     {
         return $this->scopeConfig->getValue(
-            'vendic_zopim/cookie/name',
+            $path,
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
     }

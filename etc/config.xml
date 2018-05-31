@@ -9,6 +9,7 @@
             <cookie>
                 <enable>0</enable>
                 <name>allowedAllCookies</name>
+                <value>true</value>
             </cookie>
         </vendic_zopim>
     </default>

@@ -3,7 +3,7 @@
  * @var $block \Vendic\Zopim\Block\View
  */
 ?>
-<?php if ($block->getIsEnabled() && !empty($block->getZopimId())) : ?>
+<?php if ($block->config->getIsEnabled() && !empty($block->config->getZopimId())) : ?>
     <?php if ($block->config->getCookiesEnabled()) : ?>
         <script>
             require([
@@ -13,9 +13,14 @@
             ], function ($) {
                 $(document).ready(function () {
 
-                    var cookieName = "<?php echo $block->config->getCookieName() ?>"
+                    var cookieName = "<?php echo $block->config->getExpectedCookieName() ?>"
+                    var cookieValue = "<?php echo $block->config->getExpectedCookieValue() ?>"
+                    
+                    console.log(cookieName);
+                    console.log(cookieValue);
+                    console.log($.cookie(cookieValue));
 
-                    if ($.cookie(cookieName) === 'true') {
+                    if ($.cookie(cookieName) === cookieValue) {
 
                         setTimeout(function () {
 
@@ -37,14 +42,14 @@
                                     z.set._ = [];
                                     $.async = !0;
                                     $.setAttribute("charset", "utf-8");
-                                    $.src = "//v2.zopim.com/?<?php echo $block->getZopimId() ?>";
+                                    $.src = "//v2.zopim.com/?<?php echo $block->config->getZopimId() ?>";
                                     z.t = +new Date;
                                     $.type = "text/javascript";
                                     e.parentNode.insertBefore($, e)
                                 })(document, "script");
                             }
 
-                        }, <?php echo $block->getDelay() ?>);
+                        }, <?php echo $block->config->getDelay() ?>);
 
                     }
 
@@ -78,14 +83,14 @@
                                 z.set._ = [];
                                 $.async = !0;
                                 $.setAttribute("charset", "utf-8");
-                                $.src = "//v2.zopim.com/?<?php echo $block->getZopimId() ?>";
+                                $.src = "//v2.zopim.com/?<?php echo $block->config->getZopimId() ?>";
                                 z.t = +new Date;
                                 $.type = "text/javascript";
                                 e.parentNode.insertBefore($, e)
                             })(document, "script");
                         }
 
-                    }, <?php echo $block->getDelay() ?>);
+                    }, <?php echo $block->config->getDelay() ?>);
 
                 });
             });
