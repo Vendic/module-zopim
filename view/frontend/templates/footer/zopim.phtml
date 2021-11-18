@@ -42,7 +42,7 @@
                                     z.set._ = [];
                                     $.async = !0;
                                     $.setAttribute("charset", "utf-8");
-                                    $.src = "//v2.zopim.com/?<?php echo $block->config->getZopimId() ?>";
+                                      $.src = "\/\/v2.zopim.com\/?<?= $block->escapeHtmlAttr( $block->config->getZopimId()); ?>";
                                     z.t = +new Date;
                                     $.type = "text/javascript";
                                     e.parentNode.insertBefore($, e)
@@ -83,7 +83,7 @@
                                 z.set._ = [];
                                 $.async = !0;
                                 $.setAttribute("charset", "utf-8");
-                                $.src = "//v2.zopim.com/?<?php echo $block->config->getZopimId() ?>";
+                                  $.src = "\/\/v2.zopim.com\/?<?= $block->escapeHtmlAttr( $block->config->getZopimId()); ?>";
                                 z.t = +new Date;
                                 $.type = "text/javascript";
                                 e.parentNode.insertBefore($, e)
